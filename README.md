@@ -1,4 +1,4 @@
-# command-cal
+# ical-cli
 Creating and adding events to `.ics` files from the command line.
 
 ### Requirements:
@@ -19,7 +19,7 @@ $ python create_calendary.py my_new_calendar.ics
 4. Add events using the tool and the following format:
 
 ```bash
-python create_calendar.py my_new_calendar.ics -a 'Lab Meeting' 'Tristan will present X' '2020-04-16 13:00:00' '2020-04-16 14:00:00'
+$ python create_calendar.py my_new_calendar.ics -a 'Lab Meeting' 'Greg will present X' '2020-04-16 13:00:00' '2020-04-16 14:00:00'
 ```
 
 5. Add your calendar file to the Git tree and push it to GitHub
