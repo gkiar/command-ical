@@ -7,6 +7,7 @@ import os.path as op
 import uuid
 
 
+calendar_name = "CLI-iCAL"
 default_location="Everywhere"
 example_e = ['Lab Meeting', 'Greg will present X',
              '2020-04-16 13:00:00', '2020-04-16 14:00:00']
@@ -68,7 +69,7 @@ def main():
         cal_obj.extra.append(ContentLine('X-WR-TIMEZONE', {},
                                          'America/Toronto'))
         cal_obj.extra.append(ContentLine('X-WR-CALNAME', {},
-                                         'slash /bin'))
+                                         calendar_name))
 
     if new_events is not None:
         cal_obj = updateCalendar(cal_obj, new_events)
