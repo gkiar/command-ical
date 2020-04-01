@@ -9,7 +9,7 @@ Creating and adding events to `.ics` files from the command line.
 ### Steps:
 
 1. Fork and clone this repository, then navigate inside it.
-2. Modify the script for your needs with some basic details (i.e. meeting location, url following uuids)
+2. Modify the script for your needs with some basic details (i.e. meeting location, calendar name, url following uuids)
 3. Create a calendar stub for yourself:
 
 ```bash
