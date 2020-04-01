@@ -4,19 +4,35 @@ from argparse import ArgumentParser
 from ics import Calendar, Event
 from ics.grammar.parse import ContentLine
 import os.path as op
+import uuid
 
 
 example_e = ['Lab Meeting', 'Tristan will present X',
                  '2020-04-16 13:00:00', '2020-04-16 14:00:00']
 example_e_str = str(example_e).strip('[]').replace(',','')
+default_location="EV 8.401"
 
-def createEvent(name, description, start, end):
-    e = Event()
+template_e = """BEGIN:VEVENT
+DESCRIPTION:{1}
+DTEND;TZID="America/Toronto":{3}
+DTSTART;TZID="America/Toronto":{2}
+LOCATION:{4}
+SUMMARY:{0}
+UID:{5}@slashbin.ca
+END:VEVENT"""
 
-    e.name = name
-    e.description = description
-    e.begin = start
-    e.end = end
+def createEvent(name, description, start, end, location=default_location):
+    e = template_e.format(name, description,
+                          start, end, location,
+                          str(uuid.uuid1()))
+    # e = Event()
+
+    # import pdb; pdb.set_trace()
+    # e.name = name
+    # e.description = description
+    # e.begin = start
+    # e.end = end
+    # e.location = location
 
     return e
 
@@ -33,7 +49,6 @@ def loadCalendar(ical):
 def updateCalendar(cal_obj, new_events):
     for new_e in new_events:
         tmp_e = createEvent(*new_e)
-
         cal_obj.events.add(tmp_e)
 
     return cal_obj
@@ -66,6 +81,7 @@ def main():
     if new_events is not None:
         cal_obj = updateCalendar(cal_obj, new_events)
 
+    print(cal_obj)
     with open(ical, 'w') as fhandle:
         fhandle.write(str(cal_obj))
 
