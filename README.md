@@ -16,7 +16,7 @@ Creating and adding events to `.ics` files from the command line.
 $ python create_calendary.py my_new_calendar.ics
 ```
 
-4. Add events using the tool and the following format:
+4. Add events using the tool and the following format (note: you can do this for multiple events at a time by adding another `-a`):
 
 ```bash
 $ python create_calendar.py my_new_calendar.ics -a 'Lab Meeting' 'Greg will present X' '2020-04-16 13:00:00' '2020-04-16 14:00:00'
