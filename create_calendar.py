@@ -7,10 +7,10 @@ import os.path as op
 import uuid
 
 
-example_e = ['Lab Meeting', 'Tristan will present X',
-                 '2020-04-16 13:00:00', '2020-04-16 14:00:00']
+default_location="Everywhere"
+example_e = ['Lab Meeting', 'Greg will present X',
+             '2020-04-16 13:00:00', '2020-04-16 14:00:00']
 example_e_str = str(example_e).strip('[]').replace(',','')
-default_location="EV 8.401"
 
 condense = lambda x: x.replace('-', '').replace(':', '').replace(' ', 'T')+'Z'
 
