@@ -12,6 +12,8 @@ example_e = ['Lab Meeting', 'Tristan will present X',
 example_e_str = str(example_e).strip('[]').replace(',','')
 default_location="EV 8.401"
 
+condense = lambda x: x.replace('-', '').replace(':', '').replace(' ', 'T')+'Z'
+
 template_e = """BEGIN:VEVENT
 DESCRIPTION:{1}
 DTEND;TZID="America/Toronto":{3}
@@ -23,34 +25,24 @@ END:VEVENT"""
 
 def createEvent(name, description, start, end, location=default_location):
     e = template_e.format(name, description,
-                          start, end, location,
+                          condense(start), condense(end), location,
                           str(uuid.uuid1()))
-    # e = Event()
-
-    # import pdb; pdb.set_trace()
-    # e.name = name
-    # e.description = description
-    # e.begin = start
-    # e.end = end
-    # e.location = location
-
     return e
 
 
 def loadCalendar(ical):
     if not op.exists(ical):
         raise FileNotFoundError()
-    else:
-        with open(ical, 'r') as fhandle:
-            c = Calendar(fhandle.read())
-        return c
+
+    with open(ical, 'r') as fhandle:
+        c = Calendar(fhandle.read())
+    return c
 
 
 def updateCalendar(cal_obj, new_events):
     for new_e in new_events:
         tmp_e = createEvent(*new_e)
         cal_obj.events.add(tmp_e)
-
     return cal_obj
 
 
@@ -72,7 +64,7 @@ def main():
         cal_obj = loadCalendar(ical)
     except FileNotFoundError as e:
         cal_obj = Calendar()
-        cal_obj.scale = 'gregorian'
+        cal_obj.extra.append(ContentLine('CALSCALE', {}, 'GREGORIAN'))
         cal_obj.extra.append(ContentLine('X-WR-TIMEZONE', {},
                                          'America/Toronto'))
         cal_obj.extra.append(ContentLine('X-WR-CALNAME', {},
@@ -81,10 +73,8 @@ def main():
     if new_events is not None:
         cal_obj = updateCalendar(cal_obj, new_events)
 
-    print(cal_obj)
     with open(ical, 'w') as fhandle:
         fhandle.write(str(cal_obj))
-
 
 if __name__ == "__main__":
     main()
