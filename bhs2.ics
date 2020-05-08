@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+X-WR-TIMEZONE:America/Toronto
+X-WR-CALNAME:CLI-iCAL
+VERSION:2.0
+PRODID:ics.py - http://git.io/lLljaA
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DESCRIPTION:More details @ school.brainhack.org/schedule
+DTEND:20200508T170000Z
+LOCATION:Everywhere
+DTSTART:20200508T080000Z
+SUMMARY:Installation party
+UID:2d0feb1c-9161-11ea-8a4f-820cfb0a2800@uri.com
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:More details @ school.brainhack.org/schedule
+DTEND;TZID="America/Toronto":20200508T160000Z
+DTSTART;TZID="America/Toronto":20200508T090000Z
+LOCATION:Everywhere
+SUMMARY:Installation party 💻
+UID:c20fe1cc-9161-11ea-a6f8-820cfb0a2800@uri.com
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:More details @ school.brainhack.org/schedule
+DTEND:20200507T170000Z
+LOCATION:Everywhere
+DTSTART:20200507T080000Z
+SUMMARY:Installation party
+UID:d633ee10-9160-11ea-8a77-820cfb0a2800@uri.com
+END:VEVENT
+END:VCALENDAR
