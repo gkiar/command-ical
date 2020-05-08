@@ -21,13 +21,13 @@ DTEND;TZID="America/Toronto":{3}
 DTSTART;TZID="America/Toronto":{2}
 LOCATION:{4}
 SUMMARY:{0}
-UID:{5}@slashbin.ca
+UID:{5}@uri.com
 END:VEVENT"""
 
 def createEvent(name, description, start, end, location=default_location):
     e = template_e.format(name, description,
                           condense(start), condense(end), location,
-                          str(uuid.uuid1()))
+                          str(uuid.uuid1())).replace('\n', '\r\n')
     return e
 
 
@@ -75,7 +75,7 @@ def main():
         cal_obj = updateCalendar(cal_obj, new_events)
 
     with open(ical, 'w') as fhandle:
-        fhandle.write(str(cal_obj))
+        fhandle.write(str(cal_obj).replace('\n', '\r\n'))
 
 if __name__ == "__main__":
     main()
